@@ -36,7 +36,6 @@ public class AddressService {
     private String matchRegionAndCity(String rawAddress) {
         Pair<District, String> pair = districtRepository.findCity(rawAddress, null);
 
-        System.out.println("sdfsadasdf");
         District city = pair.first();
         String remain = pair.second();
 
