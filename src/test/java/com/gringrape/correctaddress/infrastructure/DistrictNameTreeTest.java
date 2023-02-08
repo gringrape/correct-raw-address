@@ -1,4 +1,4 @@
-package com.gringrape.correctaddress;
+package com.gringrape.correctaddress.infrastructure;
 
 import com.gringrape.correctaddress.dto.Address;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 final class DistrictNameTreeTest {
     @Test
-    @DisplayName("하나의 행정구역 주소를 삽입함")
+    @DisplayName("하나의 주소에 대한 행정구역을 순차적으로 입력하면, 트리구조에 맞게 반환합니다")
     public void insertAddressNames() {
         // GIVEN
         DistrictNameTree addressNameTree = new DistrictNameTree();

@@ -1,4 +1,4 @@
-package com.gringrape.correctaddress;
+package com.gringrape.correctaddress.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
