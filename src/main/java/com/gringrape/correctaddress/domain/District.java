@@ -37,4 +37,8 @@ public class District {
     public void addChildren(List<String> childrenNames) {
         childrenNames.forEach(this::addChild);
     }
+    
+    public String parentName() {
+        return parent.name();
+    }
 }

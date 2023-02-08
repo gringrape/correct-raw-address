@@ -38,4 +38,13 @@ class AddressServiceTest {
                 addressService.match("경기 안산 상록 강촌로로 보내주세요~~")
         );
     }
+
+    @Test
+    @DisplayName("일부 행정구역이 누락된 경우에도 변환됩니다")
+    void omit() {
+        assertEquals(
+                "경기도 안산시 상록구 강촌로",
+                addressService.match("안산 상록 강촌로로 보내주세요~~")
+        );
+    }
 }
