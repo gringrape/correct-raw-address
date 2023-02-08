@@ -1,4 +1,4 @@
-package com.gringrape.correctaddress;
+package com.gringrape.correctaddress.infrastructure;
 
 import com.gringrape.correctaddress.dto.Address;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -22,7 +22,6 @@ final public class DistrictNameTree {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split("\\|");
                 this.insertAddress(new Address(values[0], values[1], values[2]));
-                System.out.println(values[0]);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.gringrape.correctaddress;
+package com.gringrape.correctaddress.infrastructure;
 
 import java.util.HashMap;
 import java.util.List;
