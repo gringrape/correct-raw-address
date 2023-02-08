@@ -28,10 +28,6 @@ public class District {
         );
     }
 
-    public Map<String, District> children() {
-        return children;
-    }
-
     public District leftMatchedChild(String query) {
         return children.values().stream()
                 .filter(i -> query.startsWith(i.name()))

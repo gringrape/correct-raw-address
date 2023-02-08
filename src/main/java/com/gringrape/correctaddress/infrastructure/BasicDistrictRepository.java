@@ -11,13 +11,17 @@ import java.util.List;
 public class BasicDistrictRepository implements DistrictRepository {
     private final DistrictNameTree districtNameTree;
 
-    public BasicDistrictRepository(DistrictNameTree districtNameTree) {
+    private final SynonymMapper synonymMapper;
+
+    public BasicDistrictRepository(DistrictNameTree districtNameTree, SynonymMapper synonymMapper) {
         this.districtNameTree = districtNameTree;
+        this.synonymMapper = synonymMapper;
     }
 
     @Override
     public Pair findRegion(String query) {
-        String regionName = findRegionName(query);
+        String canonicalQuery = synonymMapper.mapFirst(query);
+        String regionName = findRegionName(canonicalQuery);
 
         District region = new District(regionName, null);
 
@@ -26,7 +30,7 @@ public class BasicDistrictRepository implements DistrictRepository {
 
         return Pair.of(
                 region,
-                leftCut(query, region.name())
+                cutLeft(canonicalQuery, region.name())
         );
     }
 
@@ -40,15 +44,17 @@ public class BasicDistrictRepository implements DistrictRepository {
 
     @Override
     public Pair<District, String> findCity(String query, District region) {
-        District city = region.leftMatchedChild(query);
+        String canonicalQuery = synonymMapper.mapFirst(query);
+        System.out.println(canonicalQuery);
+        District city = region.leftMatchedChild(canonicalQuery);
 
         List<String> childrenNames = districtNameTree.childDistricts(region.name(), city.name());
         city.addChildren(childrenNames);
 
-        return Pair.of(city, leftCut(query, city.name()));
+        return Pair.of(city, cutLeft(canonicalQuery, city.name()));
     }
 
-    private static String leftCut(String query, String left) {
+    private static String cutLeft(String query, String left) {
         return query.replaceFirst(left, "").trim();
     }
 
